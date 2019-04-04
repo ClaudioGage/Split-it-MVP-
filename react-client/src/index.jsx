@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Bill from './components/Bill.jsx';
 import Ppl from './components/People.jsx';
+import Tip from './components/Tip.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,10 +12,44 @@ class App extends React.Component {
       people: "",
       individualTotal: "" 
     }
+    this.onTwenty = this.onTwenty.bind(this);
+    this.onFifteen = this.onFifteen.bind(this);
+    this.onTen = this.onTen.bind(this);
     this.handleIva = this.handleIva.bind(this);
     this.handleCalc = this.handleCalc.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onPeopleChange = this.onPeopleChange.bind(this);
+  }
+  onTen(e){
+    e.preventDefault();
+    const ivaIndividual = parseFloat(this.state.individualTotal)*1.10;
+    const ivaTotal = parseFloat(this.state.result)*1.10;
+    const {result, individualTotal} = this.state;
+    this.setState({
+      result: ivaTotal,
+      individualTotal: ivaIndividual,
+    });
+  }
+  onFifteen(e){
+    e.preventDefault();
+    const ivaIndividual = parseFloat(this.state.individualTotal)*1.15;
+    const ivaTotal = parseFloat(this.state.result)*1.15;
+    const {result, individualTotal} = this.state;
+    this.setState({
+      result: ivaTotal,
+      individualTotal: ivaIndividual,
+    });
+  }
+
+  onTwenty(e){
+    e.preventDefault();
+    const ivaIndividual = parseFloat(this.state.individualTotal)*1.20;
+    const ivaTotal = parseFloat(this.state.result)*1.20;
+    const {result, individualTotal} = this.state;
+    this.setState({
+      result: ivaTotal,
+      individualTotal: ivaIndividual,
+    });
   }
 
   onSearchChange  (event)  {
@@ -39,9 +74,6 @@ class App extends React.Component {
     e.preventDefault();
     const ivaIndividual = parseFloat(this.state.individualTotal)*1.16;
     const ivaTotal = parseFloat(this.state.result)*1.16;
-
-    
-    
     const {result, individualTotal} = this.state;
     this.setState({
       result: ivaTotal,
@@ -71,12 +103,16 @@ class App extends React.Component {
             </button>
 
               <br/>
-              
+
             <button 
             onClick={this.handleIva}>
             include IVA
             </button>
-        
+            <Tip 
+            onTen={this.onTen} onClick={this.onTen}
+            onFifteen={this.onFifteen} onClick={this.onFifteen}
+            onTen={this.onTwenty} onClick={this.onTwenty} 
+            />
             <p>group total bill = {this.state.result}$</p>
             <p># of people spliting: {this.state.people}</p>
             <p>Your individual total is {this.state.individualTotal}$</p>

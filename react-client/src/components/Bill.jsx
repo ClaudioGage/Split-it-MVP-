@@ -1,8 +1,8 @@
 import React from 'react';
 
-
-
-  function Bill ({ result, onSearchChange }) {
+class Bill extends React.PureComponent{
+  render(){
+    const {result, onSearchChange} = this.props;
     return (
       <div >
         <input
@@ -13,8 +13,6 @@ import React from 'react';
       </div>
     );
   }
-
-
-  
+}
 
 export default Bill;

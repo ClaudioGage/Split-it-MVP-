@@ -11,6 +11,7 @@ class App extends React.Component {
       people: "",
       individualTotal: "" 
     }
+    this.handleIva = this.handleIva.bind(this);
     this.handleCalc = this.handleCalc.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onPeopleChange = this.onPeopleChange.bind(this);
@@ -33,6 +34,22 @@ class App extends React.Component {
       individualTotal: cuenta,
     });
   }
+
+  handleIva(e){
+    e.preventDefault();
+    const ivaIndividual = parseFloat(this.state.individualTotal)*1.16;
+    const ivaTotal = parseFloat(this.state.result)*1.16;
+
+    
+    
+    const {result, individualTotal} = this.state;
+    this.setState({
+      result: ivaTotal,
+      individualTotal: ivaIndividual,
+    });
+
+
+  }
  
 
   render() {
@@ -40,13 +57,29 @@ class App extends React.Component {
       <div className="App">
         <center>
           <h1>Split it</h1>
-            <Bill onSearchChange={this.onSearchChange} />
-            < Ppl onPeopleChange={this.onPeopleChange}/>
-            <button onClick={this.handleCalc}>calculate</button>
+            <Bill 
+            onSearchChange={this.onSearchChange} 
+            />
+
+            < Ppl 
+            onPeopleChange={this.onPeopleChange}
+            />
+
+            <button 
+            onClick={this.handleCalc}>
+            calculate
+            </button>
+
+              <br/>
+              
+            <button 
+            onClick={this.handleIva}>
+            include IVA
+            </button>
         
-            <p>group total {this.state.result}</p>
-            <p>people total {this.state.people}</p>
-            <p>Your individual total is {this.state.individualTotal}</p>
+            <p>group total bill = {this.state.result}$</p>
+            <p># of people spliting: {this.state.people}</p>
+            <p>Your individual total is {this.state.individualTotal}$</p>
         </center>  
       </div>
     );

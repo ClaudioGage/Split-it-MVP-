@@ -1,84 +1,76 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Result from './components/Result.jsx';
-import Bill from './components/Bill.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      result: "121212"
-    };
-    //this.division = this.division.bind(this);
+      result: "",
+      people: "",
+      individualTotal: "" 
+    }
+    this.handleCalc = this.handleCalc.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.onPeopleChange = this.onPeopleChange.bind(this);
   }
-/*
-  componentDidMount() {
-    $.ajax({
-      url: '/items', 
-      success: (data) => {
-        this.setState({
-          items: data
-        })
-      },
-  import React from 'react';
-import ReactDOM from 'react-dom';
-//import $ from 'jquery';
-import Result from './components/Result.jsx';
-import Bill from './components/Bill.jsx';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      result: "121212"
-    };
-    //this.division = this.division.bind(this);
+  onSearchChange  (event)  {
+    this.setState({ result: event.target.value })
   }
-/*
-  componentDidMount() {
-    $.ajax({
-      url: '/items', 
-      success: (data) => {
-        this.setState({
-          items: data
-        })
-      },
-      error: (err) => {
-        console.log('err', err);
-    Component
-    Component
+  onPeopleChange  (event) {
+    this.setState({ people: event.target.value })
   }
-  */
-/*
- division(bill, people) {
-  let { result } = this.state;
-  const newItem = {
-    bill,
-    people,
-  };
-  const calculation = newItem.bill / newItem.people;
-  if(newItem){
-    console.log(calculation);
-    return calculation;
-  }
- }
- */
+  
+  handleCalc(e) {
+    e.preventDefault();
 
-  render () {
+    const cuenta = parseFloat(this.state.result / this.state.people);
+
+    const {individualTotal} = this.state;
+    this.setState({
+      individualTotal: cuenta,
+    });
+  }
+ 
+
+  render() {
     return (
-    <div>
-      <center>
-        <h1>Split it</h1>
-        <div>
-          <Bill  />
-          <h3><Result result={this.state.result} />
-          </h3>
-        </div>
-      </center>
-    </div>)
+      <div className="App">
+        <center>
+          <h1>Split it</h1>
+            <Superhero onSearchChange={this.onSearchChange} />
+            < Ppl onPeopleChange={this.onPeopleChange}/>
+            <button onClick={this.handleCalc}>calculate</button>
+        
+            <p>group total {this.state.result}</p>
+            <p>people total {this.state.people}</p>
+            <p>Your individual total is {this.state.individualTotal}</p>
+        </center>  
+      </div>
+    );
   }
 }
 
-
-
+const Superhero = ({ result, onSearchChange }) => {
+  return (
+    <div >
+      <input
+        type="search"
+        placeholder="Bill total"
+        onChange={onSearchChange}
+      />
+    </div>
+  );
+}
+const Ppl = ({ searchfield, onPeopleChange }) => {
+  return (
+    <div >
+      <input
+        type="search"
+        placeholder="Amount of people"
+        onChange={onPeopleChange}
+      />
+    </div>
+  );
+}
 ReactDOM.render(<App />, document.getElementById('app'));

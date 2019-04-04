@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class Bill extends React.Component{
   constructor(props){
     super(props);
@@ -16,6 +17,8 @@ class Bill extends React.Component{
 
       const cuenta = parseFloat(this.state.bill / this.state.people);
       console.log(cuenta);
+      this.props.cuenta;
+      console.log(this.props)
 
       const { bill, people } = this.state;
       this.setState({

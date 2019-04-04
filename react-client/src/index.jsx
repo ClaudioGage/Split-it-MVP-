@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Bill from './components/Bill.jsx';
+import Ppl from './components/People.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -38,7 +40,7 @@ class App extends React.Component {
       <div className="App">
         <center>
           <h1>Split it</h1>
-            <Superhero onSearchChange={this.onSearchChange} />
+            <Bill onSearchChange={this.onSearchChange} />
             < Ppl onPeopleChange={this.onPeopleChange}/>
             <button onClick={this.handleCalc}>calculate</button>
         
@@ -51,26 +53,4 @@ class App extends React.Component {
   }
 }
 
-const Superhero = ({ result, onSearchChange }) => {
-  return (
-    <div >
-      <input
-        type="search"
-        placeholder="Bill total"
-        onChange={onSearchChange}
-      />
-    </div>
-  );
-}
-const Ppl = ({ searchfield, onPeopleChange }) => {
-  return (
-    <div >
-      <input
-        type="search"
-        placeholder="Amount of people"
-        onChange={onPeopleChange}
-      />
-    </div>
-  );
-}
 ReactDOM.render(<App />, document.getElementById('app'));

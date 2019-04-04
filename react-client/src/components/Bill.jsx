@@ -4,23 +4,37 @@ class Bill extends React.Component{
   constructor(props){
     super(props);
     this.state ={
-      bill: 0,
-      people: 0
+      bill: "",
+      people: "",
     };
+    this.handleCalc = this.handleCalc.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-    handlePeople(e){
+
+    handleCalc(e){
+      e.preventDefault();
+
+      const cuenta = parseFloat(this.state.bill / this.state.people);
+      console.log(cuenta);
+
+      const { bill, people } = this.state;
       this.setState({
-        people: e.target.value
-      })
+        bill: '',
+        people: '',
+      });
     }
-    handleBill(e){
+    handleSubmit(e){
+      const { target } = e;
+      const { name, value } = target;
+
       this.setState({
-        bill: e.target.value
-      })
+        [name]: value,
+      });
     }
   
   render(){
     const { bill, people} = this.state;
+    const {division} = this.props;
     return(
       <div>
         <label>
@@ -29,7 +43,7 @@ class Bill extends React.Component{
             type="number"
             name="bill"
             value={bill}
-            onChange={this.handleBill}
+            onChange={this.handleSubmit}
           />
         </label>
         <br />
@@ -39,10 +53,10 @@ class Bill extends React.Component{
             type="number"
             name="people"
             value={people}
-            onChange={this.handlePeople}
+            onChange={this.handleSubmit}
           />
         </label>
-        <button>Split it</button>
+        <button onClick ={this.handleCalc} >Split it</button>
       </div>
     )
   }

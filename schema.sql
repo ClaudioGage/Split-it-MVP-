@@ -1,13 +1,13 @@
-DROP DATABASE IF EXISTS bill;
+DROP DATABASE IF EXISTS SplitIt;
 
-CREATE DATABASE bill;
+CREATE DATABASE SplitIt;
 
-USE bill;
+USE SplitIt;
 
-CREATE TABLE items (
+CREATE TABLE Bills (
   id int NOT NULL AUTO_INCREMENT,
-  quantity integer NOT NULL,
-  description varchar(50) NOT NULL,
+  group DECIMAL(20, 2) NOT NULL,
+  invididual DECIMAL(20, 2)  NOT NULL,
   PRIMARY KEY (ID)
 );
 

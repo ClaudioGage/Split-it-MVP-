@@ -90,6 +90,7 @@ class App extends React.Component {
       <div className="App">
         <center>
           <h1>Split it</h1>
+            <br/>
             <Bill 
               onSearchChange={this.onSearchChange} 
             />
@@ -97,7 +98,7 @@ class App extends React.Component {
             < Ppl 
               onPeopleChange={this.onPeopleChange}
             />
-
+            <br/>
             <button 
               onClick={this.handleCalc}>
               calculate
@@ -114,9 +115,11 @@ class App extends React.Component {
               onFifteen={this.onFifteen} onClick={this.onFifteen}
               onTwenty={this.onTwenty} onClick={this.onTwenty} 
             />
-            <p>group total bill = {this.state.result}$</p>
-            <p># of people spliting: {this.state.people}</p>
-            <p>Your individual total is {this.state.individualTotal}$</p>
+            <div id ='render' >
+              <p>group total bill = {this.state.result}$</p>
+              <p># of people spliting: {this.state.people}</p>
+              <p>Your individual total is {this.state.individualTotal}$</p>
+            </div>
               <br />
               <br /> 
             <Refresh onRefresh ={this.onRefresh} onClick ={this.onRefresh} /> 

@@ -14,26 +14,6 @@ class People extends React.PureComponent{
     );
   }
 }
-/*
-function People ({ searchfield, onPeopleChange }){
-  return (
-    <div >
-      <input
-        type="search"return (
-    <div >
-      <input
-        type="search"
-        placeholder="Amount of people"
-        onChange={onPeopleChange}
-      />
-    </div>
-  );
-        placeholder="Amount of people"
-        onChange={onPeopleChange}
-      />
-    </div>
-  );
-}
-*/
+
 
 export default People;
